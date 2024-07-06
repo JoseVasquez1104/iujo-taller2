@@ -27,4 +27,7 @@ long long factorial(int n) {
     }
 }
 
-
+// Función para calcular el valor absoluto de un número
+int absoluto(int n) {
+    return (n < 0)? -n : n;
+}

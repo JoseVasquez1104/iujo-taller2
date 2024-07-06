@@ -31,3 +31,12 @@ long long factorial(int n) {
 int absoluto(int n) {
     return (n < 0)? -n : n;
 }
+
+// Función para calcular el promedio genérico o general
+double promedio(vector<double> valores) {
+    double suma = 0.0;
+    for (double valor : valores) {
+        suma += valor;
+    }
+    return suma / valores.size();
+}

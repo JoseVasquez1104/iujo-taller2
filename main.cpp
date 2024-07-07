@@ -40,3 +40,55 @@ double promedio(vector<double> valores) {
     }
     return suma / valores.size();
 }
+// La union de los 3 Ejercicios en un solo programa
+int main() {
+    int opcion;
+    int numero;
+    vector<double> valores;
+
+    do {
+        cout << "Menú de opciones:" << endl;
+        cout << "1. Calcular factorial de un número" << endl;
+        cout << "2. Calcular valor absoluto de un número" << endl;
+        cout << "3. Calcular promedio genérico" << endl;
+        cout << "4. Salir" << endl;
+        cout << "Ingrese una opción: ";
+        cin >> opcion;
+
+        switch (opcion) {
+            case 1:
+                cout << "Ingrese un número: ";
+                cin >> numero;
+                long long resultado = factorial(numero);
+                if (resultado!= -1) {
+                    cout << "El factorial de " << numero << " es " << resultado << endl;
+                }
+                break;
+            case 2:
+                cout << "Ingrese un número: ";
+                cin >> numero;
+                cout << "El valor absoluto de " << numero << " es " << absoluto(numero) << endl;
+                break;
+            case 3:
+                cout << "Ingrese la cantidad de valores: ";
+                int cantidad;
+                cin >> cantidad;
+                valores.clear();
+                for (int i = 0; i < cantidad; i++) {
+                    double valor;
+                    cout << "Ingrese valor " << (i + 1) << ": ";
+                    cin >> valor;
+                    valores.push_back(valor);
+                }
+                cout << "El promedio es: " << promedio(valores) << endl;
+                break;
+            case 4:
+                cout << "Adiós!" << endl;
+                break;
+            default:
+                cout << "Opción inválida. Intente nuevamente." << endl;
+        }
+    } while (opcion!= 4);
+
+    return 0;
+}

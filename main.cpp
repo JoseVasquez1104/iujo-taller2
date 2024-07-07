@@ -1,5 +1,5 @@
 #include <iostream>
-#include <vector>
+#include <cmath>
 
 using namespace std;
 
@@ -12,83 +12,85 @@ Un algoritmo que calcule el promedio para cualquier cantidad de
 elementos dados.*/
 
 // Función para calcular el factorial de un número
-long long factorial(int n) {
+int factorial(int n) {
     if (n < 0) {
-        cout << "Error: No existe el factorial de un número negativo." << endl;
-        return -1;
-    } else if (n == 0) {
-        return 1;
+        return -1; // No existe el factorial de un número negativo
+    } else if (n == 0 || n == 1) {
+        return 1; // El factorial de 0 y 1 es 1
     } else {
-        long long resultado = 1;
-        for (int i = 1; i <= n; i++) {
-            resultado *= i;
-        }
-        return resultado;
+        return n * factorial(n - 1); // Cálculo recursivo del factorial
     }
 }
 
 // Función para calcular el valor absoluto de un número
-int absoluto(int n) {
-    return (n < 0)? -n : n;
+double valorAbsoluto(double num) {
+    return abs(num);
 }
 
-// Función para calcular el promedio genérico o general
-double promedio(vector<double> valores) {
-    double suma = 0.0;
-    for (double valor : valores) {
-        suma += valor;
+// Función para calcular el promedio de un numero generico o general
+double calcularPromedio(double elementos[], int cantidad) {
+    double suma = 0;
+    for (int i = 0; i < cantidad; i++) {
+        suma += elementos[i];
     }
-    return suma / valores.size();
+    return suma / cantidad;
 }
-// La union de los 3 Ejercicios en un solo programa
+
 int main() {
     int opcion;
-    int numero;
-    vector<double> valores;
-
     do {
-        cout << "Menú de opciones:" << endl;
-        cout << "1. Calcular factorial de un número" << endl;
-        cout << "2. Calcular valor absoluto de un número" << endl;
-        cout << "3. Calcular promedio genérico" << endl;
+        cout << "Menú de Opciones" << endl;
+        cout << "1. Calcular factorial" << endl;
+        cout << "2. Calcular valor absoluto" << endl;
+        cout << "3. Calcular promedio" << endl;
         cout << "4. Salir" << endl;
-        cout << "Ingrese una opción: ";
+        cout << "Seleccione una opción: ";
         cin >> opcion;
 
         switch (opcion) {
-            case 1:
-                cout << "Ingrese un número: ";
-                cin >> numero;
-                long long resultado = factorial(numero);
-                if (resultado!= -1) {
-                    cout << "El factorial de " << numero << " es " << resultado << endl;
+            case 1: {
+                int num;
+                cout << "Ingrese un número para calcular su factorial: ";
+                cin >> num;
+                int resultado = factorial(num);
+                if (resultado == -1) {
+                    cout << "No se puede calcular el factorial de un número negativo." << endl;
+                } else {
+                    cout << "El factorial de " << num << " es " << resultado << endl;
                 }
                 break;
-            case 2:
-                cout << "Ingrese un número: ";
-                cin >> numero;
-                cout << "El valor absoluto de " << numero << " es " << absoluto(numero) << endl;
+            }
+            case 2: {
+                double num;
+                cout << "Ingrese un número para calcular su valor absoluto: ";
+                cin >> num;
+                cout << "El valor absoluto de " << num << " es " << valorAbsoluto(num) << endl;
                 break;
-            case 3:
-                cout << "Ingrese la cantidad de valores: ";
+            }
+            case 3: {
                 int cantidad;
+                cout << "Ingrese la cantidad de elementos: ";
                 cin >> cantidad;
-                valores.clear();
+                double elementos[cantidad];
                 for (int i = 0; i < cantidad; i++) {
-                    double valor;
-                    cout << "Ingrese valor " << (i + 1) << ": ";
-                    cin >> valor;
-                    valores.push_back(valor);
+                    cout << "Ingrese el elemento " << i + 1 << ": ";
+                    cin >> elementos[i];
                 }
-                cout << "El promedio es: " << promedio(valores) << endl;
+                cout << "El promedio es: " << calcularPromedio(elementos, cantidad) << endl;
                 break;
-            case 4:
-                cout << "Adiós!" << endl;
+            }
+            case 4: {
+                cout << "Saliendo del programa." << endl;
                 break;
-            default:
-                cout << "Opción inválida. Intente nuevamente." << endl;
+            }
+            default: {
+                cout << "Opción inválida. Por favor seleccione una opción válida." << endl;
+                break;
+            }
         }
-    } while (opcion!= 4);
+    } while (opcion != 4);
 
     return 0;
 }
+
+

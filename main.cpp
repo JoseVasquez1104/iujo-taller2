@@ -9,7 +9,7 @@ using namespace std;
 ejecutara los siguientes requerimientos. Un algoritmo que calcule el factorial de un número dado. 
 Un algoritmo que calcule el valor absoluto de un número dato.
 Un algoritmo que calcule el promedio para cualquier cantidad de
-elementos dados.*/
+elementos dados. Se debe usar funciones */
 
 // Función para calcular el factorial de un número
 int factorial(int n) {
